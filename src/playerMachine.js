@@ -2,15 +2,24 @@ import { createMachine } from "xstate";
 
 export const playerMachine = createMachine({
   id: "player",
-  initial: "mini",
+
+  initial: "closed",
 
   states: {
+    closed: {
+      on: {
+        OPEN: "full",
+      },
+    },
+
     mini: {
       meta: {
-        description: "Meow Meow",
+        description: "Mini player mode",
       },
+
       on: {
-        toggle: "full",
+        EXPAND: "full",
+        CLOSE: "closed",
       },
     },
 
@@ -19,46 +28,27 @@ export const playerMachine = createMachine({
 
       states: {
         playing: {
-          entry: "playVideo",
           on: {
-            pause: "paused",
+            PAUSE: "paused",
           },
         },
 
         paused: {
-          entry: "pauseVideo",
           on: {
-            play: "playing",
+            PLAY: "playing",
           },
         },
       },
 
       meta: {
-        description: "The full-screen video",
+        description: "Full-screen player",
       },
-
-      exit: "stopVideo",
 
       on: {
-        toggle: "mini",
-        "key.escape": "mini",
-        "video.ended": "mini",
+        MINIMIZE: "mini",
+        CLOSE: "closed",
+        "video.ended": "closed",
       },
-    },
-  },
-},
-{
-  actions: {
-    playVideo: () => {
-      // В React мы потом вызовем video.play() через ref
-    },
-
-    pauseVideo: () => {
-      // В React через ref
-    },
-
-    stopVideo: () => {
-      // В React через ref
     },
   },
 });
