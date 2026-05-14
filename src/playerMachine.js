@@ -26,7 +26,7 @@ export const playerMachine = createMachine({
 
     
     full: {
-  initial: "playing",
+  initial: "paused",
 
   states: {
     playing: {
