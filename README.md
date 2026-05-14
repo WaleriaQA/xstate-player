@@ -1,16 +1,93 @@
-# React + Vite
+# XState Video Player
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mini video player application built with React and XState.
 
-Currently, two official plugins are available:
+The project demonstrates UI state management using finite state machines.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- XState finite state machine
+- Full / Mini player modes
+- Open / Close player
+- Play / Pause states
+- Video state synchronization
+- Ant Design modal window
+- HTML5 video player integration
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- XState
+- Ant Design
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation
+
+```bash
+npm install
+npm run dev
+
+State Machine
+
+The player behavior is controlled through XState.
+
+Main states:
+
+closed
+mini
+full
+
+Nested states inside full:
+
+playing
+paused
+
+Example transitions:
+
+OPEN
+CLOSE
+PLAY
+PAUSE
+MINIMIZE
+EXPAND
+
+Technical Notes
+
+Initially the project used react-player for video playback.
+
+During development I encountered compatibility issues between:
+
+React 19
+Vite
+react-player
+
+Symptoms:
+
+white screen after rendering player
+runtime error:
+"Element type is invalid"
+
+What was tested:
+
+reinstalling react-player
+downgrading react-player version
+testing mp4 and YouTube sources
+isolating player from Modal and XState logic
+
+Result:
+
+Native HTML5 <video> element was chosen instead of react-player.
+
+Reasons:
+
+simpler integration with XState
+stable behavior with React 19
+easier playback state management
+
+Future Improvements
+draggable mini-player
+playback progress persistence
+keyboard shortcuts
+animations and transitions
+custom player controls
+
