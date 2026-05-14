@@ -13,3 +13,40 @@
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #7f5af0, #ff4ecd);
+  color: white;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(127, 90, 240, 0.25);
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 18px rgba(255, 78, 205, 0.35);
+  filter: brightness(1.05);
+}
+
+button:active {
+  transform: translateY(0px) scale(0.98);
+  box-shadow: 0 3px 8px rgba(127, 90, 240, 0.2);
+}
+
+.mini-player .controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+button {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}

@@ -1,12 +1,11 @@
-import { createMachine } from "xstate";
+import { createMachine, assign } from "xstate";
 
 export const playerMachine = createMachine({
   id: "player",
 
-//   context: {
-//     progress: 0,
-//     isPlaying: false,
-//   },
+  context: {
+    currentTime: 0,
+  },
 
   initial: "closed",
 
@@ -24,29 +23,40 @@ export const playerMachine = createMachine({
       },
     },
 
-    
     full: {
-  initial: "paused",
+      initial: "paused",
 
-  states: {
-    playing: {
+      states: {
+        playing: {
+          on: {
+            PAUSE: "paused",
+          },
+        },
+
+        paused: {
+          on: {
+            PLAY: "playing",
+          },
+        },
+      },
+
       on: {
-        PAUSE: "paused",
+        SAVE_TIME: {
+          actions: assign({
+            currentTime: ({ event }) => event.currentTime,
+          }),
+        },
+
+        MINIMIZE: "mini",
+        CLOSE: "closed",
+
+         "video.ended": {
+    target: ".paused",
+    actions: assign({
+      currentTime: 0,
+    }),
+  },
       },
     },
-
-    paused: {
-      on: {
-        PLAY: "playing",
-      },
-    },
-  },
-
-  on: {
-    MINIMIZE: "mini",
-    CLOSE: "closed",
-    "video.ended": "closed",
-  },
-}
   },
 });
