@@ -2,7 +2,6 @@ import { useMachine } from "@xstate/react";
 import { playerMachine } from "./playerMachine";
 
 import { Modal } from "antd";
-import ReactPlayer from "react-player";
 
 import "./App.css";
 
@@ -42,21 +41,16 @@ function App() {
     {/* FULL PLAYER */}
 
     <Modal
+
       open={state.matches("full")}
       footer={null}
       onCancel={() => send({ type: "MINIMIZE" })}
       width={800}
+      
     >
       <div className="player-wrapper">
-        <ReactPlayer
-          url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-          playing={state.matches({ full: "playing" })}
-          controls={true}
-          width="100%"
-          height="450px"
-          onEnded={() => send({ type: "video.ended" })}
-        />
 
+        
         <div className="controls">
           {state.matches({ full: "playing" }) ? (
             <button onClick={() => send({ type: "PAUSE" })}>

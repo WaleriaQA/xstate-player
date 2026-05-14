@@ -3,6 +3,11 @@ import { createMachine } from "xstate";
 export const playerMachine = createMachine({
   id: "player",
 
+//   context: {
+//     progress: 0,
+//     isPlaying: false,
+//   },
+
   initial: "closed",
 
   states: {
@@ -13,42 +18,35 @@ export const playerMachine = createMachine({
     },
 
     mini: {
-      meta: {
-        description: "Mini player mode",
-      },
-
       on: {
         EXPAND: "full",
         CLOSE: "closed",
       },
     },
 
+    
     full: {
-      initial: "playing",
+  initial: "playing",
 
-      states: {
-        playing: {
-          on: {
-            PAUSE: "paused",
-          },
-        },
-
-        paused: {
-          on: {
-            PLAY: "playing",
-          },
-        },
-      },
-
-      meta: {
-        description: "Full-screen player",
-      },
-
+  states: {
+    playing: {
       on: {
-        MINIMIZE: "mini",
-        CLOSE: "closed",
-        "video.ended": "closed",
+        PAUSE: "paused",
       },
     },
+
+    paused: {
+      on: {
+        PLAY: "playing",
+      },
+    },
+  },
+
+  on: {
+    MINIMIZE: "mini",
+    CLOSE: "closed",
+    "video.ended": "closed",
+  },
+}
   },
 });
