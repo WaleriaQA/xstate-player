@@ -50,3 +50,37 @@ button {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
+
+.play-btn {
+  animation: pulse 1.6s infinite;
+  background: linear-gradient(135deg, #7f5af0, #ff4ecd);
+  box-shadow: 0 0 0 rgba(255, 78, 205, 0.4);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 78, 205, 0.5);
+  }
+
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(255, 78, 205, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 78, 205, 0);
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  min-width: 90px;
+}

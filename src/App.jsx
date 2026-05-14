@@ -83,7 +83,7 @@ function App() {
                 Pause
               </button>
             ) : (
-              <button
+              <button className="play-btn"
   onClick={() => {
     videoRef.current?.play();
     send({ type: "PLAY" });
