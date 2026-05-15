@@ -84,3 +84,23 @@ button {
 .controls button {
   min-width: 90px;
 }
+
+.custom-modal .ant-modal-container {
+  background: #ffffff;
+
+  border:5px solid transparent;
+  border-radius: 18px;
+
+  background-image:
+    linear-gradient(white, black),
+    linear-gradient(135deg, #7f5af0, #ff4ecd);
+
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+  box-shadow:
+    0 10px 30px rgba(127, 90, 240, 0.25),
+    0 0 20px rgba(255, 78, 205, 0.15);
+
+  overflow: hidden;
+}

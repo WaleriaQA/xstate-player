@@ -50,6 +50,8 @@ function App() {
       {/* FULL PLAYER */}
 
       <Modal
+      className="custom-modal"
+      rootClassName="custom-modal"
         open={state.matches("full")}
         footer={null}
         onCancel={() => send({ type: "MINIMIZE" })}
