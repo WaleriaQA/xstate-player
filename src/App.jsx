@@ -17,6 +17,12 @@ function App() {
   }
 }, [state.context.currentTime]);
 
+useEffect(() => {
+  if (!videoRef.current) return;
+
+  videoRef.current.muted = state.context.muted;
+}, [state.context.muted]);
+
   return (
     <div className="app">
       <h1>XState Video Player</h1>
@@ -64,8 +70,10 @@ function App() {
           height="450" 
           controls
           onEnded={() => send({ type: "video.ended" })}
+          onPlay={() => send({ type: "PLAY" })}
+onPause={() => send({ type: "PAUSE" })}
           >
-            <source src="https://www.w3schools.com/html/movie.mp4" />
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" />
           </video>
 
           <div className="controls">
@@ -94,6 +102,26 @@ function App() {
                 Play
               </button>
             )}
+
+            {state.context.muted ? (
+    <button
+      onClick={() => {
+        
+        send({ type: "UNMUTE" });
+      }}
+    >
+      Unmute
+    </button>
+  ) : (
+    <button
+      onClick={() => {
+        
+        send({ type: "MUTE" });
+      }}
+    >
+      Mute
+    </button>
+  )}
 
             <button
   onClick={() => {

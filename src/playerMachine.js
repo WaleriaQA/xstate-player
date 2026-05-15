@@ -5,6 +5,7 @@ export const playerMachine = createMachine({
 
   context: {
     currentTime: 0,
+    muted: false,
   },
 
   initial: "closed",
@@ -30,12 +31,36 @@ export const playerMachine = createMachine({
         playing: {
           on: {
             PAUSE: "paused",
+
+            MUTE: {
+              actions: assign({
+                muted: () => true,
+              }),
+            },
+
+            UNMUTE: {
+              actions: assign({
+                muted: () => false,
+              }),
+            },
           },
         },
 
         paused: {
           on: {
             PLAY: "playing",
+
+            MUTE: {
+              actions: assign({
+                muted: () => true,
+              }),
+            },
+
+            UNMUTE: {
+              actions: assign({
+                muted: () => false,
+              }),
+            },
           },
         },
       },
@@ -48,14 +73,15 @@ export const playerMachine = createMachine({
         },
 
         MINIMIZE: "mini",
+
         CLOSE: "closed",
 
-         "video.ended": {
-    target: ".paused",
-    actions: assign({
-      currentTime: 0,
-    }),
-  },
+        "video.ended": {
+          target: ".paused",
+          actions: assign({
+            currentTime: () => 0,
+          }),
+        },
       },
     },
   },
