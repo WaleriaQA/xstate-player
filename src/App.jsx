@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useMachine } from "@xstate/react";
 import { playerMachine } from "./playerMachine";
 
@@ -11,6 +11,14 @@ function App() {
   const [state, send] = useMachine(playerMachine);
   const videoRef = useRef(null); 
 
+  const [position, setPosition] = useState({
+  x: window.innerWidth - 340,
+  y: window.innerHeight - 220,
+});
+
+const isDragging = useRef(false);
+const dragOffset = useRef({ x: 0, y: 0 });
+
   useEffect(() => {
   if (videoRef.current) {
     videoRef.current.currentTime = state.context.currentTime;
@@ -22,6 +30,29 @@ useEffect(() => {
 
   videoRef.current.muted = state.context.muted;
 }, [state.context.muted]);
+
+useEffect(() => {
+  const handleMouseMove = (e) => {
+    if (!isDragging.current) return;
+
+    setPosition({
+      x: e.clientX - dragOffset.current.x,
+      y: e.clientY - dragOffset.current.y,
+    });
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+  };
+
+  window.addEventListener("mousemove", handleMouseMove);
+  window.addEventListener("mouseup", handleMouseUp);
+
+  return () => {
+    window.removeEventListener("mousemove", handleMouseMove);
+    window.removeEventListener("mouseup", handleMouseUp);
+  };
+}, []);
 
   return (
     <div className="app">
@@ -38,7 +69,21 @@ useEffect(() => {
       {/* MINI PLAYER */}
 
       {state.matches("mini") && (
-        <div className="mini-player">
+        <div
+  className="mini-player"
+  style={{
+    left: `${position.x}px`,
+    top: `${position.y}px`,
+  }}
+  onMouseDown={(e) => {
+    isDragging.current = true;
+
+    dragOffset.current = {
+      x: e.clientX - position.x,
+      y: e.clientY - position.y,
+    };
+  }}
+>
           <p>Mini Player</p>
 
           <div className="controls">

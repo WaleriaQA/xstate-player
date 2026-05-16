@@ -1,7 +1,7 @@
 .mini-player {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  cursor: grab;
+z-index: 9999;
 
   width: 300px;
 
@@ -15,6 +15,20 @@
   transition: all 0.35s ease;
 animation: miniPlayerAppear 0.35s ease;
 backdrop-filter: blur(12px);
+}
+
+.mini-player .controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.mini-player:hover {
+  transform: translateY(-4px);
+}
+
+.mini-player:active {
+  cursor: grabbing;
 }
 
 @keyframes miniPlayerAppear {
@@ -53,16 +67,6 @@ button:hover {
 button:active {
   transform: translateY(0px) scale(0.98);
   box-shadow: 0 3px 8px rgba(127, 90, 240, 0.2);
-}
-
-.mini-player .controls {
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.mini-player:hover {
-  transform: translateY(-4px);
 }
 
 button {
