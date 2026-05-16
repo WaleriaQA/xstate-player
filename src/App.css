@@ -5,13 +5,28 @@
 
   width: 300px;
 
-  background: white;
+  background: rgba(255, 255, 255, 0.75);
   border: 1px solid #ddd;
   border-radius: 12px;
 
   padding: 16px;
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.35s ease;
+animation: miniPlayerAppear 0.35s ease;
+backdrop-filter: blur(12px);
+}
+
+@keyframes miniPlayerAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 button {
@@ -44,6 +59,10 @@ button:active {
   display: flex;
   gap: 8px;
   margin-top: 10px;
+}
+
+.mini-player:hover {
+  transform: translateY(-4px);
 }
 
 button {
