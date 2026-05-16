@@ -31,36 +31,12 @@ export const playerMachine = createMachine({
         playing: {
           on: {
             PAUSE: "paused",
-
-            MUTE: {
-              actions: assign({
-                muted: () => true,
-              }),
-            },
-
-            UNMUTE: {
-              actions: assign({
-                muted: () => false,
-              }),
-            },
           },
         },
 
         paused: {
           on: {
             PLAY: "playing",
-
-            MUTE: {
-              actions: assign({
-                muted: () => true,
-              }),
-            },
-
-            UNMUTE: {
-              actions: assign({
-                muted: () => false,
-              }),
-            },
           },
         },
       },
@@ -72,6 +48,17 @@ export const playerMachine = createMachine({
           }),
         },
 
+        MUTE: {
+          actions: assign({
+            muted: () => true,
+          }),
+        },
+
+        UNMUTE: {
+          actions: assign({
+            muted: () => false,
+          }),
+        },
         MINIMIZE: "mini",
 
         CLOSE: "closed",

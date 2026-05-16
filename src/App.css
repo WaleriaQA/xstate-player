@@ -1,20 +1,16 @@
 .mini-player {
   position: fixed;
   cursor: grab;
-z-index: 9999;
-
+  z-index: 9999;
   width: 300px;
-
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid #ddd;
   border-radius: 12px;
-
   padding: 16px;
-
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.35s ease;
-animation: miniPlayerAppear 0.35s ease;
-backdrop-filter: blur(12px);
+  animation: miniPlayerAppear 0.35s ease;
+  backdrop-filter: blur(12px);
 }
 
 .mini-player .controls {
@@ -48,13 +44,10 @@ button {
   padding: 10px 16px;
   border: none;
   border-radius: 10px;
-
   background: linear-gradient(135deg, #7f5af0, #ff4ecd);
   color: white;
-
   font-weight: 600;
   cursor: pointer;
-
   transition: all 0.2s ease;
   box-shadow: 0 4px 10px rgba(127, 90, 240, 0.25);
 }
@@ -111,20 +104,14 @@ button {
 
 .custom-modal .ant-modal-container {
   background: #ffffff;
-
-  border:5px solid transparent;
+  border: 5px solid transparent;
   border-radius: 18px;
-
   background-image:
-    linear-gradient(white, black),
-    linear-gradient(135deg, #7f5af0, #ff4ecd);
-
+    linear-gradient(white, black), linear-gradient(135deg, #7f5af0, #ff4ecd);
   background-origin: border-box;
   background-clip: padding-box, border-box;
-
   box-shadow:
     0 10px 30px rgba(127, 90, 240, 0.25),
     0 0 20px rgba(255, 78, 205, 0.15);
-
   overflow: hidden;
 }
