@@ -19,8 +19,9 @@ backdrop-filter: blur(12px);
 
 .mini-player .controls {
   display: flex;
-  gap: 8px;
-  margin-top: 10px;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
 }
 
 .mini-player:hover {
