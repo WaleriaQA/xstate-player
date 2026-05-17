@@ -4,6 +4,12 @@ Mini video player application built with React and XState.
 
 The project demonstrates UI state management using finite state machines.
 
+## 🚀 Live Demo
+
+🔗 **Deployed project:** https://xstate-player.netlify.app/
+
+This project is fully deployed on Netlify and demonstrates a React + XState video player with mini/full modes, draggable UI, and state persistence.
+
 ## Features
 
 - XState finite state machine
