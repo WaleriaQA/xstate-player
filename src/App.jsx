@@ -111,7 +111,7 @@ function App() {
             onPlay={() => send({ type: "PLAY" })}
             onPause={() => send({ type: "PAUSE" })}
           >
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" />
+            <source src="https://res.cloudinary.com/dpjws8y0p/video/upload/v1779016725/wodoworot-russian-drill.mp4_jfjydq.mp4" />
           </video>
 
           <div className="controls">
